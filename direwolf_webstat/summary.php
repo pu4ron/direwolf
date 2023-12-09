@@ -129,7 +129,7 @@ $if = $_SESSION['if'];
 	     <?php		
 		 $time = 0; //start of the time from which to read data from log in Unix timestamp type
 		 if(!isset($_GET['time']) or ($_GET['time'] == "")) { //if time range not specified
-			$time = time() - 3600; //so take frames from last 1 hour
+			$time = time() - 86400; //so take frames from last 1 hour			
 		 }
 		 elseif($_GET['time'] == "e") { //if whole log
 			$time = 0;
