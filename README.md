@@ -1,8 +1,8 @@
 * Direwolf dashboard Modificado - BRA
-* 
+  
 * Compatível com Dataplicity!
 * Melhorias na visualização, compatibilidade e nova função.
-* 
+  
 * Siga o processo de instalação do projeto original: https://github.com/IZ7BOJ/direwolf_webstat
 * Feito todo processo de instalação, exclua os arquivos originais e adicione os arquivos deste projeto.
 * O diretorio deve ser: /var/www/html
