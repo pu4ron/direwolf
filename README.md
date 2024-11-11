@@ -1,6 +1,8 @@
-* Direwolf dashboard Modificado - BRA
+
+* Direwolf Dashboard - Modificado:
   
 * Compatível com Dataplicity!
+  
 * Melhorias na visualização, compatibilidade e nova função.
   
 * Siga o processo de instalação do projeto original: https://github.com/IZ7BOJ/direwolf_webstat
@@ -8,7 +10,7 @@
 * O diretorio deve ser: /var/www/html
 * Para configuração exite um script que pode ser usado: "autoconfig".
 
-* Atenção para os formatos de dados de LAtitude e Longitude para os devidos calculos de distância.
+* Atenção para o formato de dados de Latitude e Longitude para os devidos calculos de distância.
 
 * sudo chmod 777 /var/www/html/autoconfig
 * sudo chmod +x  /var/www/html/autoconfig
