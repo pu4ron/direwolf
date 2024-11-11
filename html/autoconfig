@@ -1,0 +1,194 @@
+#!/bin/bash
+#
+################################################
+#                                              #
+#        Por: Ronualdo JSA - PU4RON            #
+#                                              #
+#                Janauba/MG                    #
+#                                              #
+################################################
+#
+clear
+echo -e "\033[01;37m****************************************\033[00;37m"
+echo -e "\033[01;37m*                                      *\033[00;37m"
+echo -e "\033[01;37m*          \033[01;33mRONUALDO - PU4RON\033[00;37m           *"
+echo -e "\033[01;37m*                                      *\033[00;37m"
+echo -e "\033[01;37m*                                      *\033[00;37m"
+echo -e "\033[01;37m****************************************\033[00;37m"
+echo ""
+echo ""
+echo "Bem vindo! aguarde... "
+echo ""
+sleep 3
+
+sudo chmod 777 /var/www/html
+sudo chmod -R 777 /var/www/html
+sudo chown -R www-data:www-data /var/www/html
+sudo chmod 777 /var/www/html/config.php
+
+sudo chmod 777 /var/log/direwolf
+sudo chmod -R 777 /var/log/direwolf
+
+
+DIR="/var/www/html"
+
+ARQ="/var/www/html/config.php"
+
+INDCatual=$(grep -m 1 '$callsign =' /var/www/html/config.php | awk  -F "=" '/callsign =/ {print $2}' | cut -c 2-500)
+
+FACEatual=$(grep -m 1 '$interfaces=' /var/www/html/config.php | awk  -F "array" '/=array/ {print $2}')
+
+LATatual=$(grep -m 1 '$stationlat =' /var/www/html/config.php | awk  -F "=" '/stationlat =/ {print $2}' | cut -c 2-150 )
+
+LONGatual=$(grep -m 1 '$stationlon =' /var/www/html/config.php | awk  -F "=" '/stationlon =/ {print $2}' | cut -c 2-150)
+
+
+
+x="teste"
+
+menu ()
+
+{
+
+while true $x != "teste"
+do
+
+clear
+echo "================================================"
+echo ""
+echo -e "\033[01;33mObs: das opcoes 2 ao 5, somente uma deve ser ativada!\033[00;37m"
+echo ""
+echo "1)Add indicativo da estacao"
+echo "2)Ativar interface 0:0 (DEFAULT)"
+echo "3)Ativar interface 0:1"
+echo "4)Ativar interface 1:0"
+echo "5)Ativar interface 1:1"
+echo "6)Add Latitude"
+echo "7)Add Longitude"
+echo ""
+echo "8)Sair"
+echo ""
+echo "================================================"
+echo ""
+
+echo "=> Digite a opcao desejada:"
+echo ""
+read x
+echo "Opcao informada ($x)"
+
+echo ""
+echo "================================================"
+echo "================================================"
+
+
+
+case "$x" in
+
+
+    1)
+      sleep 1
+      echo ""
+      echo "Informe o indicativo da estacao:"
+      echo ""
+      read indicativoINF
+
+      sudo sed -i "s/$callsign = $INDCatual/$callsign = "\"$indicativoINF\""; "/  $ARQ 
+
+      sleep 3
+      
+echo "================================================"
+;;
+
+
+    2)
+      sleep 1
+      echo ""
+      sudo sed -i "s/$interfaces=array$FACEatual/$interfaces=array(0,0);"/  $ARQ 
+      echo ""
+      echo "*** Interface (0,0) *** OK!"
+
+      sleep 3
+echo "================================================"
+;;
+
+
+    3)
+      sleep 1
+      echo ""
+      sudo sed -i "s/$interfaces=array$FACEatual/$interfaces=array(0,1);"/  $ARQ 
+      echo ""
+      echo "*** Interface (0,1) *** OK!"
+
+      sleep 3
+echo "================================================"
+;;
+
+    4)
+      sleep 1
+      echo ""
+      sudo sed -i "s/$interfaces=array$FACEatual/$interfaces=array(1,0);"/  $ARQ 
+      echo ""
+      echo "*** Interface (1,0) *** OK!"
+
+      sleep 3
+echo "================================================"
+;;
+
+
+    5)
+      sleep 1
+      echo ""
+      sudo sed -i "s/$interfaces=array$FACEatual/$interfaces=array(1,1);"/  $ARQ 
+      echo ""
+      echo "*** Interface (1,1) *** OK!"
+
+      sleep 3
+echo "================================================"
+;;
+
+    6)
+      sleep 1
+      echo ""
+      echo -e "\033[01;37m* Latitude em graus decimais\033[00;37m"
+      echo -e "\033[01;37m* -15.123456\033[00;37m"
+      echo ""
+      echo "Informe a LATITUDE:"
+      echo ""
+      read latitudeINF
+
+      sudo sed -i "s/$stationlat = $LATatual/$stationlat = "\"$latitudeINF\""; "/  $ARQ 
+
+      sleep 3
+      
+echo "================================================"
+;;
+
+
+    7)
+      sleep 1
+      echo ""
+      echo -e "\033[01;37m* Longitude em graus decimais\033[00;37m"
+      echo -e "\033[01;37m* -43.123456\033[00;37m"
+      echo ""
+      echo "Informe a LONGITUDE:"
+      echo ""
+      read longitudeINF
+
+
+      sudo sed -i "s/$stationlon = $LONGatual/$stationlon = "\"$longitudeINF\""; "/  $ARQ 
+
+      sleep 3
+      
+echo "================================================"
+;;
+
+
+      
+
+* ) exit 0 ;;   
+esac
+
+
+done
+ }
+    menu
