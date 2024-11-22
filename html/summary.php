@@ -144,14 +144,14 @@ $if = $_SESSION['if'];
     <br>
     <br>
 
-         <button onclick="window.open('https://aprs.com.br')">APRS Server</button> 
+         <button onclick="window.open('https://aprs.com.br')">Aprs Server</button> 
 
     <a href="frames.php" class="button-link">
-        <button>Pesquisar indicativo</button>
+        <button>Pesquisa de indicativo</button>
     </a>
 
     <button onclick="window.open('live.php')">Log em tempo real</button>
-    <button onclick="window.open('mdc.php')">Log with sound</button> 
+    <button onclick="window.open('mdc.php')">Log sound</button> 
 
 
          
