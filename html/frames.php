@@ -1,112 +1,159 @@
 <?php
 
-/* log structure:
-0:chan
-1:utime
-2:isotime
-3:source
-4:heard
-5:level
-6:error
-7:dti
-8:name
-9:symbol
-10:latitude
-11:longitude
-12:speed
-13:course
-14:altitude
-15:frequency
-16:offset
-17:tone
-18:system
-19:status
-20:telemetry
-21:comment
-*/
-
 include 'config.php';
-include 'functions.php';
 
-logexists();
+$logDir = $logpath;
 
-session_start(); //needed for reading session interface
-if(!isset($_SESSION['if'])) {
-	header('Refresh: 0; url=chgif.php?chgif=1');
-	die();
+$searchCall = isset($_GET['getcall']) ? strtoupper(trim($_GET['getcall'])) : '';
+$results = [];
+
+if (!empty($searchCall)) {
+    
+    $logFile = $logDir . '/' . date('Y-m-d') . '.log';
+
+    if (file_exists($logFile)) {
+
+        $logLines = file($logFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+        foreach ($logLines as $line) {
+            $fields = str_getcsv($line, ','); 
+            if (isset($fields[8]) && $fields[8] === $searchCall) {
+                $results[] = $fields;
+            }
+        }
+    } else {
+        $error = "Arquivo de log não encontrado: $logFile";
+    }
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-<style>
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-</style>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="Description" content="Direwolf dashboard" />
-<meta name="Keywords" content="" />
-<meta name="Author" content="IZ7BOJ" />
-<title>Direwolf dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de indicativo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container input[type="text"] {
+            padding: 8px;
+            width: 200px;
+        }
+        .form-container input[type="submit"] {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            font-size: 1.2em;
+        }
+        .no-results {
+            text-align: center;
+            font-size: 1.2em;
+            color: #666;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            max-width: 300px;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-	<?php
-	if(file_exists($logourl)){
-	?>
-	<center><img src="<?php echo $logourl ?>" width="200px" height="100px" align="middle"></center><br>
-	<?php
-	}
-	?>
+    <div class="logo">
+        <img src="direwolf.png" alt="Logo do Dashboard">
+    </div>
 
-	<br>
-	<form action="frames.php" method="get">
-		Indicativo: <input type="text" name="getcall" <?php if(isset($_GET['getcall'])) echo "value=\"".$_GET['getcall']."\""; ?>>
-		<input type="submit" value="Ok">
-	</form>
-	<br>
-	<!-- FRAMES TABLE -->
-	<table style="text-align: left; height: 116px; width: 100%;" border="1" class="sortable" id="table">
-	<tbody>
-		<tr align="center">
-		<?php
-		$logfile = file($log); //read log file
-		$header = str_getcsv($logfile[0]); // take header from first row
-		echo '<th bgcolor="#ffd700"><b><font color="blue">Data</font></b></th>';
-		echo '<th bgcolor="#ffd700"><b><font color="blue">Hora</font></b></th>';
-		for ($c=3; $c < count($header); $c++) {
-	        	echo '<th bgcolor="#ffd700"><b><font color="blue">'.$header[$c].'</font></b></th>';
-			}
-		echo "</tr>";
-		if (isset($_GET['getcall']) and ($_GET['getcall'] !== "") and isset($_SESSION['if']) and ($_SESSION['if'] !== "")) {
-			$scall = strtoupper($_GET['getcall']);
-			$linesinlog = 1; //skip first row
-			$linesinlog = count($logfile);
-			$counter= 1;
-			//parse line by line
-			while($counter < $linesinlog) {
-				$line = $logfile[$counter];
-				$parts = str_getcsv($line,","); //split all fields
-				if (($parts[8]==$_GET['getcall']) and ($parts[0]==$_SESSION['if'])) { //if frame is received from selected call and interface
-					echo '<tr>';
-					 echo '<td align="center">'.substr($parts[2],0,strpos($parts[2],"T")).'</td>';
-					 echo '<td align="center">'.substr($parts[2],-strpos($parts[2],"T")+1,-1).'</td>';
-					 for ($c=3; $c < count($parts); $c++) {
-		                        	echo '<td align="center">'.$parts[$c].'</td>';
-                			        }
-					echo '</tr>';
-					} // close if received from call
-				$counter++;
-				} //close while
-				?>
-		<?php
-		} //close if
-		?>
-	</tbody>
-	</table>
+    <h1>Pesquisa de indicativo</h1>
+    <div class="form-container">
+        <form method="get">
+            <label for="getcall">Indicativo:</label>
+            <input type="text" name="getcall" id="getcall" value="<?= htmlspecialchars($searchCall) ?>">
+            <input type="submit" value="Pesquisar">
+        </form>
+    </div>
 
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <?php if (isset($error)): ?>
+        <p class="error"><?= htmlspecialchars($error) ?></p>
+    <?php elseif (!empty($results)): ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>Canal</th>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Fonte</th>
+                    <th>Nome</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Velocidade</th>
+                    <th>Curso</th>
+                    <th>Altitude</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($results as $fields): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($fields[0] ?? '') ?></td>
+                        <td><?= htmlspecialchars(substr($fields[2], 0, strpos($fields[2], 'T'))) ?></td>
+                        <td><?= htmlspecialchars(substr($fields[2], strpos($fields[2], 'T') + 1)) ?></td>
+                        <td><?= htmlspecialchars($fields[3] ?? '') ?></td>
+                        <td><?= htmlspecialchars($fields[8] ?? '') ?></td>
+                        <td><?= htmlspecialchars($fields[10] ?? '') ?></td>
+                        <td><?= htmlspecialchars($fields[11] ?? '') ?></td>
+                        <td><?= htmlspecialchars($fields[12] ?? '') ?></td>
+                        <td><?= htmlspecialchars($fields[13] ?? '') ?></td>
+                        <td><?= htmlspecialchars($fields[14] ?? '') ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p class="no-results"><?= $searchCall ? "Nenhum resultado encontrado para '$searchCall'." : "Insira um indicativo para pesquisa." ?></p>
+    <?php endif; ?>
+
+	<br><br><br><br><br><br><br><br><br>
 	<center><a>Direwolf dashboard - Modificado por: Ronualdo PU4RON. Desenvolvido por Alfredo IZ7BOJ</center>
+
 </body>
 </html>
