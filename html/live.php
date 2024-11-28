@@ -73,20 +73,11 @@ function formatDateTime($dateTime) {
 
 function colorizeLogLine($line) {
 
-    //$line = preg_replace('/\b(PY4BN(-\d*)?)\b/', '<span class="color blue">$1</span>', $line, 1);
-    //$line = preg_replace('/\b(PY4IG(-\d*)?)\b/', '<span class="color indicativos">$1</span>', $line, 1);
-    //$line = preg_replace('/\b(PU4RON(-\d*)?)\b/', '<span class="color blue">$1</span>', $line, 1);
-    //$line = preg_replace('/\b(PY4RLA(-\d*)?)\b/', '<span class="color destaque1">$1</span>', $line, 1);
-    //$line = preg_replace('/\b(PY4ARR(-\d*)?)\b/', '<span class="color indicativos">$1</span>', $line, 1);
-    //$line = preg_replace('/\b(PY4AC(-\d*)?)\b/', '<span class="color indicativos">$1</span>', $line, 1);
-    //$line = preg_replace('/\b(PY4AW(-\d*)?)\b/', '<span class="color indicativos">$1</span>', $line, 1);
-
-    $line = preg_replace('/\b(PY4.*(-\d*)?)\b/', '<span class="color indicativos">$1</span>', $line, 1);
-    $line = preg_replace('/\b(PU4.*(-\d*)?)\b/', '<span class="color indicativos">$1</span>', $line, 1);
+    //$line = preg_replace('/\b(PY4.*(-\d*)?)\b/', '<span class="color indicativos">$1</span>', $line, 1);
+    //$line = preg_replace('/\b(PU4.*(-\d*)?)\b/', '<span class="color indicativos">$1</span>', $line, 1);
     $line = preg_replace('/\b(PY4BN(-\d*)?)\b/', '<span class="color blue">$1</span>', $line, 1);
     $line = preg_replace('/\b(PU4RON(-\d*)?)\b/', '<span class="color blue">$1</span>', $line, 1);
     $line = preg_replace('/\b(PY4RLA(-\d*)?)\b/', '<span class="color blue">$1</span>', $line, 1);
-
 
     $line = preg_replace('/\b(apps:.*?)(\s|$)/i', '<span class="color destaque">$1</span>', $line);
     $line = preg_replace('/\b(DireWolf:.*)(\s|$)/i', '<span class="color destaque">$1</span>', $line);
