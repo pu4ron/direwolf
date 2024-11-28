@@ -25,7 +25,7 @@ $if = $_SESSION['if'];
 <!DOCTYPE html>
 <html>
    <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
       <meta name="Description" content="Direwolf dashboard" />
       <meta name="Keywords" content="" />
       <meta name="Author" content="IZ7BOJ" />
@@ -144,13 +144,13 @@ $if = $_SESSION['if'];
     <br>
     <br>
 
-         <button onclick="window.open('https://aprs.com.br')">Aprs Server</button> 
+         <button onclick="window.open('https://aprs.com.br')">Aprs server</button> 
 
     <a href="frames.php" class="button-link">
-        <button>Pesquisa de indicativo</button>
+        <button>Pesquisa</button>
     </a>
 
-    <button onclick="window.open('live.php')">Log em tempo real</button>
+    <button onclick="window.open('live.php')">Log direwolf</button>
     <button onclick="window.open('mdc.php')">Log sound</button> 
 
 
@@ -259,7 +259,7 @@ $if = $_SESSION['if'];
 	  <br><br>
       <form action="summary.php" method="GET">
 
-      <b>Mostrar esta&ccedil;&otilde;es desde a &uacute;ltima:
+      <b>Eventos e a&ccedil;&otilde;es:
       <select name="time">
          <option value="1" <?php if(isset($_GET['time'])&&($_GET['time'] == 1)) echo 'selected="selected"'?>>1 hora</option>
          <option value="2" <?php if(isset($_GET['time'])&&($_GET['time'] == 2)) echo 'selected="selected"'?>>2 horas</option>
@@ -300,10 +300,10 @@ $if = $_SESSION['if'];
                <td bgcolor="silver"><b><?php echo $c ?></b></td>
                <td align="center"><?php echo $nm[0] ?></td>
                <td><?php echo '<a target="_blank" href="https://aprs.fi/?call='.$c.'">aprs.fi</a>'?></td>
-               <td><?php echo '<a target="_blank" href="frames.php?getcall='.$c.'">Mostar frames da estacao</a>' ?></td>
+               <td><?php echo '<a target="_blank" href="frames.php?getcall='.$c.'">frames da esta&ccedil;&atilde;o</a>' ?></td>
                <td align="center">
                   <?php
-                     if (in_array($c, $staticstations)) echo '<font color="purple">ESTATICO</font>';
+                     if (in_array($c, $staticstations)) echo '<font color="purple">EST&Aacute;TICO</font>';
                      elseif (in_array($c, $movingstations)) echo '<font color="orange">EM MOVIMENTO</font>';
                      else echo "OTHER";
                      ?>

@@ -152,8 +152,9 @@ if (!empty($searchCall)) {
         <p class="no-results"><?= $searchCall ? "Nenhum resultado encontrado para '$searchCall'." : "Insira um indicativo para pesquisa." ?></p>
     <?php endif; ?>
 
+
 	<br><br><br><br><br><br><br><br><br>
-	<center><a>Direwolf dashboard - Modificado por: Ronualdo PU4RON. Desenvolvido por Alfredo IZ7BOJ</center>
+	<center><a><b>Direwolf dashboard - Modificado por: Ronualdo PU4RON. Desenvolvido por Alfredo IZ7BOJ</center>
 
 </body>
 </html>
