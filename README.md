@@ -1,3 +1,5 @@
+* V1.1 - Pequenas correções e ajustes no código.
+*
 
 * Direwolf Dashboard - Modificado:
   
