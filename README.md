@@ -25,7 +25,6 @@
 * Desenvolvido por Alfredo IZ7BOJ
 * https://github.com/IZ7BOJ/direwolf_webstat
 
-![1](https://github.com/user-attachments/assets/d8a607db-e765-49cf-915f-8302294df78b)
 
 ![B](https://github.com/user-attachments/assets/0525f679-f074-449c-996c-e866fdf50eca)
 
