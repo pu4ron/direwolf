@@ -300,7 +300,7 @@ $if = $_SESSION['if'];
                <td bgcolor="silver"><b><?php echo $c ?></b></td>
                <td align="center"><?php echo $nm[0] ?></td>
                <td><?php echo '<a target="_blank" href="https://aprs.fi/?call='.$c.'">aprs.fi</a>'?></td>
-               <td><?php echo '<a target="_blank" href="frames.php?getcall='.$c.'">frames da esta&ccedil;&atilde;o</a>' ?></td>
+               <td><?php echo '<a target="_blank" href="frames.php?getcall='.$c.'">Frames da esta&ccedil;&atilde;o</a>' ?></td>
                <td align="center">
                   <?php
                      if (in_array($c, $staticstations)) echo '<font color="purple">EST&Aacute;TICO</font>';
