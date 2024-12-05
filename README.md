@@ -1,4 +1,4 @@
-* V1.1 PU4RON - (05/12/24) - Pequenas correções e ajustes no código.
+* V1.1 PU4RON - (05/12/24) - Correções e ajustes no código.
 *
 
 * Direwolf Dashboard - Modificado:
