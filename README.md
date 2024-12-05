@@ -5,7 +5,7 @@
   
 * Compatível com Dataplicity!
   
-* Melhorias na visualização, compatibilidade e nova função.
+* Melhorias na visualização, compatibilidade e novas funções.
   
 * Siga o processo de instalação do projeto original: https://github.com/IZ7BOJ/direwolf_webstat
 * Obs.: Caso algum erro de instalação referente ao "php" aparecer, verifique as dicas do site: https://vsys.host/how-to/how-to-install-php-8-2-7-4-5-6-on-debian-11
