@@ -144,7 +144,7 @@ $if = $_SESSION['if'];
     <br>
     <br>
 
-         <button onclick="window.open('https://aprs.com.br')">Aprs server</button> 
+         <button onclick="window.open('http://aprs.com.br:14501')">Aprs server</button> 
 
     <a href="frames.php" class="button-link">
         <button>Pesquisa</button>
