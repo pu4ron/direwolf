@@ -29,9 +29,6 @@
 ![B](https://github.com/user-attachments/assets/0525f679-f074-449c-996c-e866fdf50eca)
 
 
-![B](https://github.com/user-attachments/assets/88d48bab-8d37-42ef-a6cd-30929874278d)
-
-
 ![2](https://github.com/user-attachments/assets/da0735fd-2b9a-47a2-89c8-da04e1f1c314)
 
 
