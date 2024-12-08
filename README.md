@@ -1,5 +1,5 @@
 * V1.1.b PU4RON - (08/12/24) - ajustes na página de pesquisa.
-*
+#
 
 * Direwolf Dashboard - Modificado:
   
