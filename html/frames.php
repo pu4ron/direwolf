@@ -26,7 +26,7 @@ if (!empty($searchCall)) {
             }
         }
     } else {
-        $error = "Arquivo de log não encontrado: $logFile";
+        $error = "Arquivo de log n&atilde;o encontrado: $logFile";
     }
 }
 ?>
@@ -61,22 +61,6 @@ if (!empty($searchCall)) {
             cursor: pointer;
         }
         .form-container input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-        .toggle-time-container {
-            text-align: center;
-            margin: 15px auto;
-        }
-        .toggle-time-container button {
-            padding: 6px 12px;
-            font-size: 14px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .toggle-time-container button:hover {
             background-color: #45a049;
         }
         table {
@@ -118,6 +102,22 @@ if (!empty($searchCall)) {
             max-width: 300px;
             height: auto;
         }
+        .toggle-time-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .toggle-time-container button {
+            padding: 6px 12px;
+            font-size: 14px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .toggle-time-container button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -132,22 +132,17 @@ if (!empty($searchCall)) {
             <input type="text" name="getcall" id="getcall" maxlength="10" value="<?= htmlspecialchars($searchCall) ?>">
             <input type="submit" value="Pesquisar">
         </form>
-<br>
     </div>
 
     <?php if (isset($error)): ?>
         <p class="error"><?= htmlspecialchars($error) ?></p>
     <?php elseif (!empty($results)): ?>
-        <div class="toggle-time-container">
-            <button id="toggle-time">Fuso hor&aacute;rio</button>
-        </div>
-        <br>
         <table>
             <thead>
                 <tr>
                     <th>Canal</th>
                     <th>Data</th>
-                    <th>Hora</th>
+                    <th class="time-cell" id="toggle-time-header" style="cursor: pointer;">Hora</th>
                     <th>Fonte</th>
                     <th>Nome</th>
                     <th>Latitude</th>
@@ -175,7 +170,8 @@ if (!empty($searchCall)) {
                     <tr>
                         <td><?= htmlspecialchars($fields[0] ?? '') ?></td>
                         <td><?= htmlspecialchars($formattedDate) ?></td>
-                        <td class="time-cell" data-zulu="<?= htmlspecialchars($time) ?>" data-br="<?= htmlspecialchars($brTime) ?>">UTC: <?= htmlspecialchars($time) ?></td>
+                        <td class="time-cell" data-zulu="<?= htmlspecialchars($time) ?>" data-br="<?= htmlspecialchars($brTime) ?>">
+                            UTC: <?= htmlspecialchars($time ?: 'Indefinido') ?></td>
                         <td><?= htmlspecialchars($fields[3] ?? '') ?></td>
                         <td><?= htmlspecialchars($fields[8] ?? '') ?></td>
                         <td><?= htmlspecialchars($fields[10] ?? '') ?></td>
@@ -196,17 +192,22 @@ if (!empty($searchCall)) {
     <?php endif; ?>
 
     <br><br><br><br>
-    <center><a><b>Direwolf dashboard - Modificado por: Ronualdo PU4RON. Desenvolvido por Alfredo IZ7BOJ</center>
+    <center><a><b>Direwolf dashboard - Modificado por: Ronualdo PU4RON. Desenvolvido por Alfredo IZ7BOJ</b></a></center>
 
     <script>
-        document.getElementById('toggle-time')?.addEventListener('click', function() {
+        document.getElementById('toggle-time-header')?.addEventListener('click', function() {
             const timeCells = document.querySelectorAll('.time-cell');
             timeCells.forEach(cell => {
                 const isZulu = cell.textContent.startsWith('UTC:');
-                if (isZulu) {
-                    cell.textContent = 'BR: ' + cell.dataset.br;
-                } else {
-                    cell.textContent = 'UTC: ' + cell.dataset.zulu;
+                const zuluTime = cell.dataset.zulu;
+                const brTime = cell.dataset.br;
+
+                if (zuluTime && brTime) {
+                    if (isZulu) {
+                        cell.textContent = 'BR: ' + brTime;
+                    } else {
+                        cell.textContent = 'UTC: ' + zuluTime;
+                    }
                 }
             });
         });
