@@ -1,4 +1,5 @@
 * V1.1.2 PU4RON - (08/12/24) - ajustes na página de pesquisa.
+* Para alternar o fuso horário click no nome "Hora" (UTC/BR).
 #
 
 * Direwolf Dashboard - Modificado:
