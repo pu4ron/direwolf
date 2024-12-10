@@ -1,167 +1,151 @@
 <?php
 
-/*
-<b>Pesquisa de estacao: <button onclick="window.open('frames.php')">OK</button><br><br>
-*/
 //header('Refresh:30');
 include 'config.php';
 include 'functions.php';
 
-$MYCALL=strtoupper($callsign);
+$logourl="direwolf_ini.png";
 
-if(file_exists('custom.php')) include 'custom.php';
+$MYCALL = strtoupper($callsign);
+
+if (file_exists('custom.php')) include 'custom.php';
 
 logexists();
   
 session_start(); //start session
-if(!isset($_SESSION['if'])) { //if interface not defined
-   	header('Refresh: 0; url=chgif.php?chgif=1');
-	die();
+if (!isset($_SESSION['if'])) { 
+    header('Refresh: 0; url=chgif.php?chgif=1');
+    die();
 }
 
 $if = $_SESSION['if'];
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
       <meta name="Description" content="Direwolf dashboard" />
       <meta name="Keywords" content="" />
       <meta name="Author" content="IZ7BOJ" />
-      <!-- next style is to show arrows in sortable table's column headers to indicate that the table is sortable -->
       <style type="text/css">
-         table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
-         content: " \25B4\25BE"
-         }
-         table, th, td {
-         border: 1px solid black;
-         border-collapse: collapse;
-         }
-      </style>
-      
-    <title><?php echo "Direwolf dashboard: $MYCALL";?></title>
-
-      <style>
          body {
-            font-family: Arial, sans-serif;
-            background-color: #f0g0f0; //#f4f4f9;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text */
             text-align: center;
             margin: 0;
             padding: 20px;
          }
 
-         button {
-            background: linear-gradient(135deg, #1d4ed8, #3b82f6);
-            //background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 5px 10px;
-            cursor: pointer;
-            font-size: 20px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.9);
-            margin: 10px;         
+         h2 {
+            color: #ffffff;
+            font-size: 24px;
+            margin-bottom: 20px;
          }
 
+         button {
+            background-color: #1e88e5;
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin: 10px 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+         }
 
          button:hover {
-            background: linear-gradient(135deg, #2563eb, #1e3a8a);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            background-color: #1565c0;
          }
 
-         button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+         table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #212121; /* Dark table background */
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
          }
 
-         a.button-link {
-            display: inline-block;
-            text-decoration: none;
+         th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+         }
+
+         th {
+            background-color: #1e88e5; /* Blue background for header */
             color: white;
          }
 
+         tr:hover {
+            background-color: #333;
+         }
 
-        table {
-            margin: 20px auto;
-            border-collapse: collapse;
-            width: 80%;
-        }
+         select {
+            padding: 8px 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background-color: #333;
+            color: white;
+         }
 
-        th, td {
-            border: 10px color: black; //solid #ddd;
-            padding: 5px;
-            text-align: center;
-        }
-
-        th {
-            //background-color: #ffd700;
-            //color: blue;
-        }
-
-        td {
-            //background-color: #f9f9f9;
-        }
-
-
-  img {
-            margin-top: 20px;
-        }
-
-        hr {
-            margin: 20px 20;
+         hr {
+            margin: 40px 20px;
             border: 0;
-            height: 1px;
-            background: #ddd;
-        }
+            border-top: 1px solid #444;
+         }
 
+         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+         }
+
+         .logo img {
+            max-width: 200px;
+            height: auto;
+         }
 
       </style>
 
-    <script>
-
-        setInterval(function() {
+      <script>
+         setInterval(function() {
             location.reload();
-        }, 30000);
-    </script>
+         }, 30000);
+      </script>
 
-
+      <title><?php echo "Direwolf dashboard: $MYCALL";?></title>
    </head>
    <body>
-      <?php
+      <div class="container">
+<?php
          if(file_exists($logourl)){
          ?>
-      <center><img src="<?php echo $logourl ?>" width="200px" height="200px" align="middle"></center>
+      <center><img src="<?php echo $logourl ?>" width="350px" height="250px" align="middle"></center>
       <br>
       <?php
          }
          ?>
       <center>
-         <font size="20"></b></font> <font color="red" size="20"><b><?php echo "$MYCALL";?></b></font>
+         <font size="20"></b></font> <font color="red" size="20"><b><?php echo ""; echo "$MYCALL";?></b></font>
     <br>
     <br>
 
-         <button onclick="window.open('http://aprs.com.br:14501')">Aprs server</button> 
 
-    <a href="frames.php" class="button-link">
-        <button>Pesquisa</button>
-    </a>
-
-    <button onclick="window.open('live.php')">Log direwolf</button>
-    <button onclick="window.open('mdc.php')">Log sound</button> 
-
-
+         <a href="frames.php">
+            <button>PESQUISA</button>
+         </a>
+         <button onclick="window.open('http://aprs.com.br:14501')">APRS</button>
+         <button onclick="window.open('live.php')">LOG DIREWOLF</button>
+         <button onclick="window.open('mdc.php')">RECEPTION SOUND</button>
          
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-
+         <br><br>
 
     <?php         // System parameters reading
          $sysver      = NULL;
@@ -184,44 +168,43 @@ $if = $_SESSION['if'];
          }
          $uptime = shell_exec('uptime -p');
 		?>
-        
-      <br>
-      <table style="text-align: left; height: 116px; width: 600px;" border="1" cellpadding="2" cellspacing="2">
-         <tbody>
-            <tr align="center">
-                  <td bgcolor="#ffd700" style="width: 600px;" colspan="2" rowspan="1"><span
-                  style="color: red; font-weight: bold;">DISPOSITIVO</span></td>
-            </tr>
-            <tr>
-               <td bgcolor="silver" style="width: 200px;"><b>Vers&atilde;o do sistema operacional: </b></td>
-               <td style="width: 400px; font-weight: bold;"><?php echo $sysver ?></td>
-            </tr>
-            <tr>
-               <td bgcolor="silver" style="width: 200px;"><b>Kernel: </b></td>
-               <td style="width: 400px; font-weight: bold;"><?php echo $kernelver ?></td>
-            </tr>
-            <tr>
-               <td bgcolor="silver" style="width: 200px;"><b>Vers&atilde;o do Direwolf: </b></td>
-               <td style="width: 400px; font-weight: bold;"><?php echo $direwolfver ?></td>
-            </tr>
-            <tr>
-               <td bgcolor="silver" style="width: 200px;"><b>Tempo de atividade: </b></td>
-               <td style="width: 400px; font-weight: bold;"><?php echo $uptime ?></td>
-            </tr>
-            <tr>
-               <td bgcolor="silver" style="width: 200px;"><b>CPU temperature:</b></td>
-               <td style="width: 400px; font-weight: bold;"><?php echo $cputemp ?> °C </td>
-            </tr>
-            <tr>
-               <td bgcolor="silver" style="width: 200px;"><b>CPU frequency: </b></td>
-               <td style="width: 400px; font-weight: bold;"><?php echo $cpufreq ?> MHz </td>
-            </tr>
-         </tbody>
-      </table>
-      <br><br>    <br>    <br>
-      <hr>
-    <hr>
-      <br><br>
+
+         <table>
+            <thead>
+               <tr>
+                  <th colspan="2">DISPOSITIVO</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td><b>Sistema operacional:</b></td>
+                  <td><b><?php echo $sysver ?></b></td>
+               </tr>
+               <tr>
+                  <td><b>Kernel:</b></td>
+                  <td><b><?php echo $kernelver ?></b></td>
+               </tr>
+               <tr>
+                  <td><b>Direwolf:</b></td>
+                  <td><b><?php echo $direwolfver ?></b></td>
+               </tr>
+               <tr>
+                  <td><b>Tempo de atividade:</b></td>
+                  <td><b><?php echo $uptime ?></b></td>
+               </tr>
+               <tr>
+                  <td><b>Temperatura da CPU:</b></td>
+                  <td><b><?php echo $cputemp ?> &#176;C</b></td>
+               </tr>
+               <tr>
+                  <td><b>Frequ&ecirc;ncia da CPU:</b></td>
+                  <td><b><?php echo $cpufreq ?> MHz</b></td>
+               </tr>
+            </tbody>
+         </table>
+
+         <br><br>
+
 	     <?php		
 		 $time = 0; //start of the time from which to read data from log in Unix timestamp type
 		 if(!isset($_GET['time']) or ($_GET['time'] == "")) { //if time range not specified
@@ -281,38 +264,40 @@ $if = $_SESSION['if'];
 	  <script src="sorttable.js"></script>
       <table style="text-align: left; height: 116px; width: 1200px;" border="1" class="sortable" id="table">
          <tbody>
-            <tr>
-               <th bgcolor="#ffd700"><b><font color="blue">Indicativo</font></b></th>
-               <th bgcolor="#ffd700"><b><font color="blue">Qnt</font></b></th>
-               <td bgcolor="#ffd700"><b><font color="blue">Mapa</font></b></td>
-               <td bgcolor="#ffd700"><b><font color="blue">Frames</font></b></td>
-               <th bgcolor="#ffd700"><b><font color="blue">Est&aacute;tico/Movimento</font></b></th>
-               <th bgcolor="#ffd700"><b><font color="blue">Rota</font></b></th>
-               <th bgcolor="#ffd700"><b><font color="blue">Data/Hora</font></b></th>
-               <th bgcolor="#ffd700"><b><font color="blue">Dist&acirc;ncia</font></b></th>
-               <th bgcolor="#ffd700"><b><font color="blue">Local</font></b></th>
-            </tr>
-            <?php
+               <tr>
+                  <th><b>Indicativo</b></th>
+                  <th><b>Qnt</b></th>
+                  <th><b>Mapa</b></th>
+                  <th><b>Frames</b></th>
+                  <th><b>Est&aacute;tico/Movimento</b></th>
+                  <th><b>Rota</b></th>
+                  <th><b>Data/Hora</b></th>
+                  <th><b>Dist&acirc;ncia</b></th>
+                  <th><b>Local</b></th>
+               </tr>
+            </thead>
+            <tbody>
+             <?php
                foreach($receivedstations as $c=>$nm)
                {
                ?>
             <tr>
-               <td bgcolor="silver"><b><?php echo $c ?></b></td>
+               <td bgcolor="#2F4F4F"><b><?php echo $c ?></b></td>
                <td align="center"><?php echo $nm[0] ?></td>
-               <td><?php echo '<a target="_blank" href="https://aprs.fi/?call='.$c.'">aprs.fi</a>'?></td>
-               <td><?php echo '<a target="_blank" href="frames.php?getcall='.$c.'">Frames da esta&ccedil;&atilde;o</a>' ?></td>
+               <td><?php echo '<a target="_blank" href="https://aprs.fi/?call='.$c.'" style="color: DarkTurquoise;">aprs.fi</a>' ?></td>
+               <td><?php echo '<a target="_blank" href="frames.php?getcall='.$c.'" style="color: DarkTurquoise;">Frames da esta&ccedil;&atilde;o</a>' ?></td>
                <td align="center">
                   <?php
-                     if (in_array($c, $staticstations)) echo '<font color="purple">EST&Aacute;TICO</font>';
-                     elseif (in_array($c, $movingstations)) echo '<font color="orange">EM MOVIMENTO</font>';
+                     if (in_array($c, $staticstations)) echo '<font color="RoyalBlue">EST&Aacute;TICO</font>';
+                     elseif (in_array($c, $movingstations)) echo '<font color="RoyalBlue">EM MOVIMENTO</font>';
                      else echo "OTHER";
                      ?>
                </td>
                <td align="center">
                   <?php
-                     if ((in_array($c, $directstations))&&(in_array($c, $viastations))) echo '<font color="BLUE">DIGI~DIRETO</font>';
-                     elseif (in_array($c, $directstations)) echo '<font color="RED">PONTO-A-PONTO</font>';
-                     else if (in_array($c, $viastations)) echo '<font color="GREEN">DIGI</font>';
+                     if ((in_array($c, $directstations))&&(in_array($c, $viastations))) echo '<font color="gold">DIGI~DIRETO</font>';
+                     elseif (in_array($c, $directstations)) echo '<font color="gold">PONTO-A-PONTO</font>';
+                     else if (in_array($c, $viastations)) echo '<font color="RoyalBlue">DIGI</font>';
                          ?>
                </td>
                <td align="center">
@@ -344,17 +329,13 @@ $if = $_SESSION['if'];
                </td>
             </tr>
             <?php
-               }
+                   }
                ?>
-         </tbody>
-      </table>
-      <br>
-      <hr>
-    <hr>
-      <br>
-      <center><a>Direwolf dashboard - Modificado por: Ronualdo PU4RON. Desenvolvido por Alfredo IZ7BOJ</center>
-      <br>
+            </tbody>
+         </table>
+
+         <br><hr><br>
+         <center><a>Direwolf dashboard - Modificado por: Ronualdo PU4RON. Desenvolvido por Alfredo IZ7BOJ</center>
+      </div>
    </body>
 </html>
-
-
