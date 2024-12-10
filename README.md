@@ -29,11 +29,8 @@
 * Desenvolvido por Alfredo IZ7BOJ
 * https://github.com/IZ7BOJ/direwolf_webstat
 
+![novo1](https://github.com/user-attachments/assets/a0afb6cd-61e8-4467-b7fe-d70a69e54b00)
 
-![B](https://github.com/user-attachments/assets/0525f679-f074-449c-996c-e866fdf50eca)
-
-
-![2](https://github.com/user-attachments/assets/da0735fd-2b9a-47a2-89c8-da04e1f1c314)
-
+![novo2](https://github.com/user-attachments/assets/235b3f11-2631-4915-9f57-8f11254dec06)
 
 ![4F](https://github.com/user-attachments/assets/c1a17bb4-1ae3-4b62-a31d-2f7d58c65b98)
