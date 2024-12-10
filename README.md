@@ -1,3 +1,6 @@
+* V1.1.3 PU4RON - (09/12/24) - Página inicial reformulada.
+#
+
 * V1.1.2 PU4RON - (08/12/24) - ajustes na página de pesquisa.
 * Para  alternância de fuso horário click no nome "Hora" (UTC/BR).
 #
