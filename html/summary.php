@@ -289,14 +289,14 @@ $if = $_SESSION['if'];
                <td align="center">
                   <?php
                      if (in_array($c, $staticstations)) echo '<font color="RoyalBlue">EST&Aacute;TICO</font>';
-                     elseif (in_array($c, $movingstations)) echo '<font color="RoyalBlue">EM MOVIMENTO</font>';
+                     elseif (in_array($c, $movingstations)) echo '<font color="PaleVioletRed">EM MOVIMENTO</font>';
                      else echo "OTHER";
                      ?>
                </td>
                <td align="center">
                   <?php
-                     if ((in_array($c, $directstations))&&(in_array($c, $viastations))) echo '<font color="gold">DIGI~DIRETO</font>';
-                     elseif (in_array($c, $directstations)) echo '<font color="gold">PONTO-A-PONTO</font>';
+                     if ((in_array($c, $directstations))&&(in_array($c, $viastations))) echo '<font color="SandyBrown">DIGI~DIRETO</font>';
+                     elseif (in_array($c, $directstations)) echo '<font color="SandyBrown">PONTO-A-PONTO</font>';
                      else if (in_array($c, $viastations)) echo '<font color="RoyalBlue">DIGI</font>';
                          ?>
                </td>
