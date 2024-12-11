@@ -91,7 +91,7 @@ if (!empty($searchCall)) {
             white-space: nowrap;
         }
         table th {
-            background-color: #0000ff;
+            background-color: #1e88e5;
             color: #ffffff;
         }
         table tr:nth-child(even) {
