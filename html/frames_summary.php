@@ -51,21 +51,12 @@ if (!empty($searchCall)) {
             text-align: center;
             margin-bottom: 20px;
         }
-
-
-
-
-
         .form-container label {
             font-family: 'Roboto', sans-serif;
             font-size: 1.2em;
             font-weight: 500;
             color: #e0e0e0;
         }
-
-
-
-
         .form-container input[type="text"] {
             padding: 8px;
             width: 200px;
@@ -74,8 +65,6 @@ if (!empty($searchCall)) {
             border: 1px solid #5a5a5a;
             border-radius: 5px;
         }
-
-
         .form-container input[type="submit"] {
             padding: 2px 10px;
             background-color: #d3d3d3;
