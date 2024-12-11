@@ -285,7 +285,7 @@ $if = $_SESSION['if'];
                <td bgcolor="#2F4F4F"><b><?php echo $c ?></b></td>
                <td align="center"><?php echo $nm[0] ?></td>
                <td><?php echo '<a target="_blank" href="https://aprs.fi/?call='.$c.'" style="color: DarkTurquoise;">aprs.fi</a>' ?></td>
-               <td><?php echo '<a target="_blank" href="frames.php?getcall='.$c.'" style="color: DarkTurquoise;">Frames da esta&ccedil;&atilde;o</a>' ?></td>
+               <td><?php echo '<a target="_blank" href="frames_summary.php?getcall='.$c.'" style="color: DarkTurquoise;">Frames da esta&ccedil;&atilde;o</a>' ?></td>
                <td align="center">
                   <?php
                      if (in_array($c, $staticstations)) echo '<font color="RoyalBlue">EST&Aacute;TICO</font>';

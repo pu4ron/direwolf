@@ -152,12 +152,10 @@ if (!empty($searchCall)) {
         <img src="direwolf_ini.png" alt="Logo do Dashboard">
     </div>
 
-    <h1>Pesquisa de indicativo</h1>
+
     <div class="form-container">
         <form method="get">
-            <label for="getcall">Indicativo:</label>
-            <input type="text" name="getcall" id="getcall" maxlength="10" value="<?= htmlspecialchars($searchCall) ?>">
-            <input type="submit" value="Pesquisar">
+
         </form>
     </div>
 
