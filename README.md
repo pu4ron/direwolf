@@ -1,4 +1,4 @@
-* V1.1.3 PU4RON - (11/12/24) - Nova página de frames.
+* V1.1.3 PU4RON - (12/12/24) - Nova página de frames e Log.
 #
 
 * V1.1.3 PU4RON - (09/12/24) - Página inicial reformulada.
