@@ -1,3 +1,6 @@
+* V1.1.3 PU4RON - (26/12/24) - Aviso de erro de log suprimido. 
+#
+
 * V1.1.3 PU4RON - (12/12/24) - Nova página de frames e Log.
 #
 
