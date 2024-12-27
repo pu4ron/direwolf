@@ -45,12 +45,87 @@ function logexists()
         } else {
                 $log=$logpath.gmdate("Y-m-d").'.log';
         }
+
+//****************************************************************************************************//
+
+/*
 	if(!file_exists($log))  {
 			echo '<font color="red" size="6"><b>Erro de acesso ao arquivo de log '.$log.'</b></font>';
 			echo '<br><br>Verifique se o caminho do arquivo de log em config.php est&aacute; definido corretamente.<br>Verifique se o arquivo '.$log.'.log exists.';
 			echo '<br><br><b>Pointless to continue.</b>';
 			die();
 	}
+
+*/
+
+//***************************************************************************************************//
+
+/*
+
+if (!file_exists($log)) {
+    echo '
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Erro - Arquivo de Log</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #000;
+                color: #fff;
+                font-family: Arial, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                text-align: center;
+            }
+            .error-container {
+                max-width: 600px;
+                padding: 20px;
+                border: 1px solid #ff0000;
+                border-radius: 10px;
+                background: linear-gradient(135deg, #222, #111);
+                box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+            }
+            .error-container h1 {
+                color: #ff0000;
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+            .error-container p {
+                font-size: 1.1rem;
+                margin-bottom: 15px;
+            }
+            .error-container a {
+                color: #1e90ff;
+                text-decoration: none;
+                font-weight: bold;
+            }
+            .error-container a:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="error-container">
+            <h1>ERRO DE ACESSO AO LOG!</h1>
+            <p>N&atilde;o foi poss&iacute;vel acessar o arquivo de log: <strong>' . htmlspecialchars($log) . '</strong></p>
+            <p>Certifique-se de que o caminho do log em <strong>"config.php"</strong> esteja definido corretamente.</p>
+            <p>Verifique o arquivo <strong>' . htmlspecialchars($log) . '</strong> existe.</p>
+            <p><b>Imposs&iacute;vel continuar!!!</b></p>
+        </div>
+    </body>
+    </html>';
+    die();
+}
+ 
+*/
+
+//***************************************************************************************************//
 }
 
 
